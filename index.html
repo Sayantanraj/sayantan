@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Sayantan Dhara — Full Stack Developer, Quantum Cryptography Researcher & UK Design Patent Co-Inventor." />
+<title>Sayantan Dhara · Full Stack Developer & Quantum Researcher</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ============ CUSTOM CURSOR + PROGRESS + BG ============ -->
+<canvas id="bgCanvas"></canvas>
+<div class="cursor-glow" id="cursorGlow"></div>
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <a href="#home" class="logo">SD<span>.</span></a>
+  <nav class="nav-links" id="navLinks">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#patent">Patent</a>
+    <a href="#achievement">Awards</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="home">
+  <div class="hero-media">
+    <video class="hero-bg-blur" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+      <source src="video.mp4" type="video/mp4" />
+    </video>
+    <video id="heroBgVideo" class="hero-bg-video" autoplay muted playsinline preload="auto">
+      <source src="video.mp4" type="video/mp4" />
+    </video>
+    <div class="hero-bg-overlay"></div>
+  </div>
+  <div class="hero-content hero-enter">
+    <p class="hero-kicker">Hello, I'm</p>
+    <h1 class="hero-title">Sayantan Dhara</h1>
+    <h2 class="hero-sub">I build <span id="typed" class="accent"></span></h2>
+    <p class="hero-desc">
+      Custom Software Engineer &amp; MCA finalist. Co-inventor of a
+      <strong>UK Registered Design Patent (No. 6505034)</strong> for a Hybrid
+      Quantum-Classical Computer Device. I craft scalable web apps, REST APIs &amp; automation pipelines.
+    </p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn btn-primary">View My Work</a>
+      <a href="SAYANTAN_DHARA_CV_Current.pdf" class="btn btn-ghost" download>↓ Download CV</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="num" data-target="1">0</span><label>UK Patent</label></div>
+      <div class="stat"><span class="num" data-target="9.37">0</span><label>B.Voc CGPA</label></div>
+      <div class="stat"><span class="num" data-target="10">0</span><label>+ Projects</label></div>
+    </div>
+  </div>
+  <a href="#about" class="scroll-cue">scroll<span></span></a>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="section" id="about">
+  <div class="section-head reveal">
+    <span class="tag">01 — About</span>
+    <h2>Engineering across <span class="accent">code &amp; the quantum frontier</span></h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>
+        I'm currently a <strong>Full Stack Developer Intern at Flint De Orient</strong> and a
+        final-year MCA student at B.P. Poddar Institute of Management &amp; Technology. My work spans
+        the full SDLC — from responsive React front-ends to Node.js / Flask back-ends.
+      </p>
+      <p>
+        I also build <strong>AI agents</strong> and <strong>automation systems</strong> — bulk
+        messaging &amp; workflows across <strong>WhatsApp, Instagram, Facebook &amp; Email</strong>
+        that cut manual work and scale outreach.
+      </p>
+      <p>
+        Beyond the web, I research <strong>post-quantum cryptography</strong>. My hybrid QKD-PQC
+        cryptographic model led to a <strong>UK Registered Design Patent</strong> — work I'm
+        genuinely proud of.
+      </p>
+      <ul class="about-list">
+        <li>💼 Full Stack Developer Intern @ Flint De Orient</li>
+        <li>🤖 Building AI agents &amp; multi-channel automation (WhatsApp · Insta · FB · Email)</li>
+        <li>🏆 UK Design Patent Co-Inventor (No. 6505034)</li>
+        <li>🎓 MCA Finalist · B.Voc Distinction (9.37 CGPA) · 📍 Kolkata, India</li>
+      </ul>
+    </div>
+    <div class="about-cards reveal">
+      <div class="mini-card"><h3>Full Stack</h3><p>React · Node · Flask · REST APIs across the full SDLC.</p></div>
+      <div class="mini-card"><h3>Quantum Crypto</h3><p>QKD + PQC hybrid models simulated in Qiskit.</p></div>
+      <div class="mini-card"><h3>AI &amp; Automation</h3><p>AI agents + WhatsApp · Insta · FB · Email automation &amp; bulk messaging.</p></div>
+      <div class="mini-card"><h3>ML / CV</h3><p>OpenCV face recognition &amp; attendance systems.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section class="section" id="skills">
+  <div class="section-head reveal">
+    <span class="tag">02 — Skills</span>
+    <h2>My <span class="accent">technical toolkit</span></h2>
+  </div>
+  <div class="skills-wrap">
+    <div class="skill-col reveal">
+      <h3>Languages</h3>
+      <div class="bars" data-bars>
+        <div class="bar"><span>Java</span><i style="--v:88%"></i></div>
+        <div class="bar"><span>Python</span><i style="--v:90%"></i></div>
+        <div class="bar"><span>JavaScript</span><i style="--v:85%"></i></div>
+        <div class="bar"><span>SQL</span><i style="--v:80%"></i></div>
+      </div>
+    </div>
+    <div class="skill-col reveal">
+      <h3>Web &amp; Backend</h3>
+      <div class="bars" data-bars>
+        <div class="bar"><span>React.js</span><i style="--v:85%"></i></div>
+        <div class="bar"><span>Node / Express</span><i style="--v:82%"></i></div>
+        <div class="bar"><span>Flask (Jinja2)</span><i style="--v:80%"></i></div>
+        <div class="bar"><span>REST APIs</span><i style="--v:86%"></i></div>
+      </div>
+    </div>
+    <div class="skill-col reveal">
+      <h3>Quantum &amp; Data</h3>
+      <div class="bars" data-bars>
+        <div class="bar"><span>Qiskit · QKD · PQC</span><i style="--v:78%"></i></div>
+        <div class="bar"><span>MySQL · MongoDB</span><i style="--v:82%"></i></div>
+        <div class="bar"><span>OpenCV / ML</span><i style="--v:76%"></i></div>
+        <div class="bar"><span>Automation</span><i style="--v:84%"></i></div>
+      </div>
+    </div>
+  </div>
+  <div class="chips reveal">
+    <span>HTML5</span><span>CSS3</span><span>Git &amp; GitHub</span><span>Linux</span><span>Postman</span>
+    <span>VS Code</span><span>DSA</span><span>OS</span><span>DBMS</span><span>OOP</span>
+  </div>
+</section>
+
+<!-- ============ SCROLLING TECH MARQUEE ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>React</span><b>✦</b><span>Node.js</span><b>✦</b><span>Python</span><b>✦</b><span>Qiskit</span><b>✦</b>
+    <span>Flask</span><b>✦</b><span>MongoDB</span><b>✦</b><span>TypeScript</span><b>✦</b><span>Gemini AI</span><b>✦</b>
+    <span>OpenCV</span><b>✦</b><span>REST APIs</span><b>✦</b><span>Next.js</span><b>✦</b><span>Quantum Crypto</span><b>✦</b>
+    <span>React</span><b>✦</b><span>Node.js</span><b>✦</b><span>Python</span><b>✦</b><span>Qiskit</span><b>✦</b>
+    <span>Flask</span><b>✦</b><span>MongoDB</span><b>✦</b><span>TypeScript</span><b>✦</b><span>Gemini AI</span><b>✦</b>
+    <span>OpenCV</span><b>✦</b><span>REST APIs</span><b>✦</b><span>Next.js</span><b>✦</b><span>Quantum Crypto</span><b>✦</b>
+  </div>
+</div>
+
+<!-- ============ PATENT HIGHLIGHT ============ -->
+<section class="section patent" id="patent">
+  <div class="patent-card reveal">
+    <div class="patent-badge">UK · IPO</div>
+    <div class="patent-grid">
+      <div class="patent-info">
+        <span class="tag">03 — Intellectual Property</span>
+        <h2>UK Registered Design Patent <span class="accent">No. 6505034</span></h2>
+        <p class="patent-lead">Hybrid Quantum-Classical Computer Device — for Authentication &amp; Protective Housing.</p>
+        <div class="patent-meta">
+          <div><label>Issued By</label><p>UK Intellectual Property Office (IPO)</p></div>
+          <div><label>Class</label><p>14 — Recording, Telecom &amp; Data Processing (v15-2025)</p></div>
+          <div><label>Registered</label><p>Feb 2026</p></div>
+        </div>
+        <p class="patent-foot">Derived from my hybrid QKD-PQC cryptographic research — built for the quantum era.</p>
+      </div>
+      <figure class="patent-doc">
+        <img src="uk%20design.jpg" alt="UK Registered Design Patent No. 6505034 — official document" data-zoom loading="lazy" />
+        <figcaption>📄 Official patent document · click to enlarge</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HACKATHON ACHIEVEMENT ============ -->
+<section class="section achievement" id="achievement">
+  <div class="section-head reveal">
+    <span class="tag">04 — Achievement</span>
+    <h2>Hackathon <span class="accent">Champions</span> · Catalyst 2K26</h2>
+  </div>
+
+  <div class="ach-card reveal">
+    <div class="ach-info">
+      <div class="ach-badges">
+        <span class="ach-trophy">🏆 Winner</span>
+        <span class="ach-pill">AI in Education Track</span>
+        <span class="ach-pill ghost">Team INTERNZ</span>
+      </div>
+      <h3>ShikshakSathi <span class="ach-sub">— "Teacher's Companion"</span></h3>
+      <p class="ach-lead">
+        24 hours. Zero sleep. One idea we refused to let go of. We walked into
+        <strong>Amity University Kolkata</strong> as students from B.P. Poddar Institute of
+        Management &amp; Technology — and walked out as <strong>track champions</strong>. 🏅
+      </p>
+      <p class="ach-body">
+        Every day, Indian teachers grade hundreds of handwritten answer sheets by hand.
+        <strong>ShikshakSathi</strong> is an AI grading assistant that understands <em>meaning,
+        not just keywords</em> — rewarding students who truly grasp a concept, even when they
+        paraphrase. Powered by <strong>Google Gemini 2.5 Flash</strong>.
+      </p>
+      <ul class="ach-features">
+        <li>📸 Reads handwritten answer sheets with AI vision</li>
+        <li>📝 Grades against the teacher's own rubric</li>
+        <li>🗣️ Warm bilingual feedback — English + Bengali / Hindi</li>
+        <li>📊 Spots the most common mistakes across a whole class</li>
+        <li>📚 Auto-generates lesson plans so no weak spot slips through</li>
+      </ul>
+      <div class="ach-stack">
+        <span>Next.js</span><span>React + TypeScript</span><span>MongoDB Atlas</span>
+        <span>Gemini 2.5 Flash</span><span>Tailwind CSS</span>
+      </div>
+      <div class="ach-actions">
+        <a class="btn btn-primary" href="https://youtu.be/FP2d98BBWyc?si=x9so9oOgjpBPgJYc" target="_blank" rel="noopener">🎥 See it in action</a>
+        <a class="btn btn-ghost" href="https://intelligent-teacher.vercel.app/" target="_blank" rel="noopener">🌐 Try it live</a>
+      </div>
+      <p class="ach-quote">"Hackathons are proof that a raw idea + relentless focus + 24 hours can become something real that matters." 🙌</p>
+    </div>
+
+    <div class="ach-gallery">
+      <img src="2.jpeg" alt="Hackathon win — Catalyst 2K26" data-zoom loading="lazy" />
+      <img src="3.jpeg" alt="Team INTERNZ at Amity University Kolkata" data-zoom loading="lazy" />
+      <img src="4.jpg" alt="ShikshakSathi presentation" data-zoom loading="lazy" />
+      <img src="5.jpg" alt="Catalyst 2K26 hackathon moment" data-zoom loading="lazy" />
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section class="section" id="projects">
+  <div class="section-head reveal">
+    <span class="tag">05 — Projects</span>
+    <h2>Things I've <span class="accent">built &amp; researched</span></h2>
+  </div>
+
+  <!-- Featured flagship project -->
+  <article class="project-featured reveal">
+    <div class="pf-main">
+      <div class="pf-badges">
+        <span class="ach-trophy">⭐ Lead Developer</span>
+        <span class="ach-pill">Live Product</span>
+        <span class="ach-pill ghost">Flint De Orient</span>
+      </div>
+      <h3>Flint Box <span class="pf-sub">— All-in-One CRM &amp; Multi-Channel Automation Platform</span></h3>
+      <p class="pf-lead">
+        A multi-talented <strong>CRM platform</strong> that manages customers and runs marketing
+        automation across <strong>WhatsApp, Facebook, Instagram &amp; Email</strong> — from bulk
+        message sending to complete client follow-up tracking with <strong>Hot / Warm / Cold</strong>
+        lead pipelines. I <strong>lead and built this end-to-end</strong> — the entire software, the
+        automation workflows, and the <strong>VPS deployment &amp; hosting from scratch to present</strong>.
+      </p>
+      <ul class="pf-features">
+        <li>📇 Customer &amp; contact management (CRM)</li>
+        <li>💬 Multi-channel automation — WhatsApp · FB · Insta · Email</li>
+        <li>📤 Bulk message sending at scale</li>
+        <li>🔥 Lead tracking — Hot / Warm / Cold &amp; follow-ups</li>
+        <li>⚙️ Custom automation workflow builder</li>
+        <li>🚀 Self-hosted on VPS — deployment &amp; hosting from scratch</li>
+      </ul>
+      <div class="pf-stack">
+        <span>Full Stack</span><span>CRM</span><span>Automation Workflows</span>
+        <span>Node.js</span><span>React</span><span>VPS Deployment</span>
+      </div>
+      <div class="pf-actions">
+        <a class="btn btn-primary" href="https://www.flintbox.io/" target="_blank" rel="noopener">🌐 Visit flintbox.io</a>
+        <span class="pf-role">Building from scratch → present · Lead Developer</span>
+      </div>
+    </div>
+    <div class="pf-side" aria-hidden="true">
+      <div class="pf-glasscard">
+        <span class="pf-logo">Flint<b>Box</b></span>
+        <div class="pf-chips">
+          <i>WhatsApp</i><i>Facebook</i><i>Instagram</i><i>Email</i>
+          <i>Bulk Send</i><i>Hot Leads</i><i>Warm Leads</i><i>Cold Leads</i>
+        </div>
+        <div class="pf-pulse"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+  </article>
+
+  <div class="projects">
+    <article class="project reveal">
+      <div class="project-top">
+        <span class="project-ico">🔐</span>
+        <div class="project-links"><span class="pill">Featured</span></div>
+      </div>
+      <h3>Hybrid QKD-PQC Cryptographic Algorithm</h3>
+      <p>A hybrid cryptographic model combining Quantum Key Distribution and Post-Quantum
+         Cryptography for quantum-era secure communications. Simulated in Qiskit; evaluated key
+         exchange robustness against quantum &amp; classical attacks.</p>
+      <div class="project-tags"><span>Python</span><span>Qiskit</span><span>QKD</span><span>PQC</span></div>
+      <p class="project-note">→ Resulted in UK Registered Design Patent No. 6505034</p>
+    </article>
+    <article class="project reveal">
+      <div class="project-top">
+        <span class="project-ico">🧠</span>
+        <div class="project-links"><span class="pill">ML / CV</span></div>
+      </div>
+      <h3>Face Recognition &amp; Attendance System</h3>
+      <p>Real-time face detection and identity verification using OpenCV and ML algorithms, with a
+         Flask web interface for attendance management and automated report generation.</p>
+      <div class="project-tags"><span>Python</span><span>OpenCV</span><span>Flask</span><span>ML</span></div>
+      <p class="project-note">→ Real-time detection · web dashboard</p>
+    </article>
+    <article class="project reveal">
+      <div class="project-top">
+        <span class="project-ico">⚙️</span>
+        <div class="project-links"><span class="pill">Automation</span></div>
+      </div>
+      <h3>Email &amp; WhatsApp Automation Pipelines</h3>
+      <p>Engineered automation pipelines at Flint De Orient that reduced manual overhead and
+         streamlined outreach — built and deployed within Agile sprints.</p>
+      <div class="project-tags"><span>Node.js</span><span>REST</span><span>Automation</span></div>
+      <p class="project-note">→ Production deployed · Agile workflow</p>
+    </article>
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE + EDUCATION TIMELINE ============ -->
+<section class="section" id="experience">
+  <div class="section-head reveal">
+    <span class="tag">06 — Journey</span>
+    <h2>Experience &amp; <span class="accent">education</span></h2>
+  </div>
+  <div class="timeline">
+    <div class="tl-item reveal">
+      <div class="tl-dot"></div>
+      <span class="tl-date">2025 – Present</span>
+      <h3>Full Stack Developer Intern</h3>
+      <h4>Flint De Orient · Kolkata</h4>
+      <p>Building web apps with React, Node &amp; Flask across the full SDLC. Built REST APIs,
+         responsive UIs and automation pipelines; took part in Agile sprints, code reviews and
+         production deployments.</p>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-dot"></div>
+      <span class="tl-date">2024 – 2026</span>
+      <h3>MCA — Master of Computer Applications</h3>
+      <h4>B.P. Poddar Institute of Mgmt &amp; Tech · Kolkata</h4>
+      <p>SGPA improving steadily: 6.68 → 7.00 → 8.00. Currently in 4th semester.</p>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-dot"></div>
+      <span class="tl-date">2021 – 2024</span>
+      <h3>B.Voc in Software Development</h3>
+      <h4>Asutosh College, Calcutta University</h4>
+      <p>Graduated with Distinction — CGPA 9.37 / 10.</p>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-dot"></div>
+      <span class="tl-date">2019 – 2021</span>
+      <h3>Higher Secondary (H.S.)</h3>
+      <h4>R.K. Mission Shilpavidyalaya, Belur Math</h4>
+      <p>Foundation in science &amp; computing.</p>
+    </div>
+  </div>
+  <div class="certs reveal">
+    <h3>Certifications &amp; Credentials</h3>
+    <div class="cred-grid">
+
+      <article class="cred-card">
+        <div class="cred-head">
+          <span class="cred-ico">🎓</span>
+          <div>
+            <h4>Learning Management System (LMS)</h4>
+            <span>Vivekananda College, Thakurpukur · Aug 2023 – Feb 2024</span>
+          </div>
+        </div>
+        <p>Worked as a <strong>Software Developer</strong> on the development team and built a
+          Learning Management System (LMS) <strong>live project</strong> for Vivekananda College,
+          Thakurpukur. Contributed strong technical and problem-solving skills to deliver the
+          project successfully.</p>
+        <div class="cred-imgs">
+          <img src="vc%201.png" alt="LMS certificate — Vivekananda College (1)" data-zoom loading="lazy" />
+          <img src="vc2.png" alt="LMS certificate — Vivekananda College (2)" data-zoom loading="lazy" />
+        </div>
+      </article>
+
+      <article class="cred-card">
+        <div class="cred-head">
+          <span class="cred-ico">🤖</span>
+          <div>
+            <h4>From Learner to Builder: Become an AI Agent Architect</h4>
+            <span>IBM SkillsBuild · Completed July 2025</span>
+          </div>
+        </div>
+        <p>IBM SkillsBuild completion certificate validating hands-on skills in <strong>designing and
+          building AI agents</strong> — covering agentic AI architecture, LLM-powered agent
+          workflows, and applying AI agents to real-world use cases.</p>
+        <div class="cred-imgs one">
+          <img src="ibm.png" alt="IBM SkillsBuild — AI Agent Architect certificate" data-zoom loading="lazy" />
+        </div>
+      </article>
+
+      <article class="cred-card">
+        <div class="cred-head">
+          <span class="cred-ico">💻</span>
+          <div>
+            <h4>Full Stack Development</h4>
+            <span>PW Skills · 2025 – Present</span>
+          </div>
+        </div>
+        <p>Comprehensive full-stack web development program covering modern front-end, back-end,
+          databases, REST APIs and deployment workflows.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section contact" id="contact">
+  <div class="section-head reveal">
+    <span class="tag">07 — Contact</span>
+    <h2>Let's <span class="accent">build something</span></h2>
+  </div>
+  <div class="contact-grid reveal">
+    <a class="contact-card" href="mailto:sayantand652@gmail.com">
+      <span class="ci">✉️</span><h3>Email</h3><p>sayantand652@gmail.com</p></a>
+    <a class="contact-card" href="tel:+917449366526">
+      <span class="ci">📞</span><h3>Phone</h3><p>+91 74493 66526</p></a>
+    <a class="contact-card" href="https://www.linkedin.com/in/sayantan-dhara-430bb5312" target="_blank" rel="noopener">
+      <span class="ci">in</span><h3>LinkedIn</h3><p>sayantan-dhara</p></a>
+    <a class="contact-card" href="https://github.com/Sayantanraj" target="_blank" rel="noopener">
+      <span class="ci">⌨</span><h3>GitHub</h3><p>@Sayantanraj</p></a>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>© 2026 Sayantan Dhara · Kolkata, India</p>
+  <p class="footer-note">Built with HTML · CSS · JavaScript — designed &amp; animated from scratch.</p>
+</footer>
+
+<!-- ============ LIGHTBOX ============ -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lb-close" id="lbClose" aria-label="Close">✕</button>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous">‹</button>
+  <img id="lbImg" src="" alt="" />
+  <button class="lb-nav lb-next" id="lbNext" aria-label="Next">›</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
