@@ -2,62 +2,104 @@
    Sayantan Dhara — Portfolio interactions
    ========================================================= */
 
-/* ---------- HERO BACKGROUND VIDEO: AUTOPLAY, AUTO SOUND, NO CONTROLS ---------- */
-const bgVideo = document.getElementById('heroBgVideo');
+/* ---------- HERO VIDEO: PLAY BUTTON → PLAYS WITH SOUND ---------- */
+const bgVideo  = document.getElementById('heroBgVideo');
+const playBtn  = document.getElementById('playBtn');
+const playHint = document.getElementById('playHint');
 
-let soundOn = false;
-
-// Returns true once the video is confirmed playing with sound
-function soundConfirmed(){
-  return bgVideo && !bgVideo.muted && !bgVideo.paused && bgVideo.currentTime > 0;
-}
-
-// Attempt to play WITH sound. If the browser blocks it, keep the video playing muted.
-function tryWithSound(){
-  if(!bgVideo || soundOn) return;
+// The video does NOT autoplay. Clicking the play button is a real user gesture,
+// so the browser allows it to start WITH sound — no other controls needed.
+function startWithSound(){
+  if(!bgVideo) return;
   bgVideo.muted = false;
   bgVideo.volume = 1;
-  const p = bgVideo.play();
-  if(p && p.then){
-    p.then(()=>{ if(!bgVideo.muted){ soundOn = true; removeAllListeners(); } })
-     .catch(()=>{ bgVideo.muted = true; bgVideo.play().catch(()=>{}); }); // fallback: stay playing, muted
-  }
+  try{ bgVideo.currentTime = 0; }catch(e){}
+  bgVideo.play().catch(()=>{});
+  playBtn?.classList.add('hidden');
+  playHint?.classList.add('hidden');
 }
+playBtn?.addEventListener('click', startWithSound);
 
-// 1) On load: start the video, attempting sound immediately
-if(bgVideo){
-  bgVideo.muted = true;
-  bgVideo.play().catch(()=>{});                 // guarantee it plays (muted)
-  tryWithSound();                               // then immediately try to add sound
-  bgVideo.addEventListener('loadeddata', tryWithSound, {once:true});
-  bgVideo.addEventListener('canplay',    tryWithSound, {once:true});
-}
-
-// 2) Re-attempt sound on the FIRST of ANY signal — move, scroll, click, key, touch.
-//    Listeners stay until sound is actually confirmed, so nothing gets removed too early.
-const SOUND_EVENTS = ['pointerdown','pointermove','pointerover','mousemove','mousedown',
-  'click','keydown','touchstart','touchend','scroll','wheel','focus'];
-function onAnySignal(){ tryWithSound(); if(soundConfirmed()){ soundOn = true; removeAllListeners(); } }
-function removeAllListeners(){ SOUND_EVENTS.forEach(ev=> window.removeEventListener(ev, onAnySignal)); }
-SOUND_EVENTS.forEach(ev=> window.addEventListener(ev, onAnySignal, {passive:true}));
-
-// 3) Also retry a few times in the first seconds (covers late media-permission grants)
-let retries = 0;
-const retryTimer = setInterval(()=>{
-  if(soundOn || retries++ > 12){ clearInterval(retryTimer); return; }
-  tryWithSound();
-}, 400);
-
-// 3) When the video finishes, auto-scroll down to the next section
+// When the video finishes, auto-scroll down to the next section
 let autoScrolled = false;
 bgVideo?.addEventListener('ended', ()=>{
   if(autoScrolled) return;
   autoScrolled = true;
   document.getElementById('about')?.scrollIntoView({behavior:'smooth'});
 });
-// If the visitor scrolls on their own first, don't yank them later
-window.addEventListener('wheel', ()=>{ autoScrolled = true; }, {passive:true, once:true});
-window.addEventListener('touchmove', ()=>{ autoScrolled = true; }, {passive:true, once:true});
+
+/* ---------- MOBILE: move Skills + tech marquee to just before Contact ---------- */
+(function(){
+  const about   = document.getElementById('about');
+  const skills  = document.getElementById('skills');
+  const patent  = document.getElementById('patent');
+  const marquee = document.querySelector('.marquee');
+  const contact = document.getElementById('contact');
+  if(!contact) return;
+  const mq = matchMedia('(max-width:768px)');
+  function place(e){
+    if(e.matches){
+      // mobile → Skills, then the marquee, right before Contact
+      if(skills)  contact.parentNode.insertBefore(skills, contact);
+      if(marquee) contact.parentNode.insertBefore(marquee, contact);
+    }else{
+      // desktop → restore original order: About → Skills → Marquee → Patent
+      if(about && skills)   about.insertAdjacentElement('afterend', skills);
+      if(patent && marquee) patent.insertAdjacentElement('beforebegin', marquee);
+    }
+  }
+  place(mq);
+  mq.addEventListener ? mq.addEventListener('change', place) : mq.addListener(place);
+})();
+
+/* ---------- MOBILE: keep section serial numbers sequential ---------- */
+(function(){
+  const DASH = ' — ';
+  const map = [
+    {sel:'#about .section-head .tag',       label:'About',                 d:'01', m:'01'},
+    {sel:'#patent .patent-head .tag',       label:'Intellectual Property', d:'03', m:'02'},
+    {sel:'#achievement .section-head .tag', label:'Achievement',           d:'04', m:'03'},
+    {sel:'#projects .section-head .tag',    label:'Projects',              d:'05', m:'04'},
+    {sel:'#experience .section-head .tag',  label:'Journey',               d:'06', m:'05'},
+    {sel:'#skills .section-head .tag',      label:'Skills',                d:'02', m:'06'},
+    {sel:'#contact .section-head .tag',     label:'Contact',               d:'07', m:'07'},
+  ];
+  const mqn = matchMedia('(max-width:768px)');
+  function setNums(e){
+    map.forEach(t=>{
+      const el = document.querySelector(t.sel);
+      if(el) el.textContent = (e.matches ? t.m : t.d) + DASH + t.label;
+    });
+  }
+  setNums(mqn);
+  mqn.addEventListener ? mqn.addEventListener('change', setNums) : mqn.addListener(setNums);
+})();
+
+/* ---------- PATENT DETAILS POPUP (mobile) ---------- */
+const patentMore  = document.getElementById('patentMore');
+const patentModal = document.getElementById('patentModal');
+const pmClose     = document.getElementById('pmClose');
+function openPatent(){ patentModal?.classList.add('open'); patentModal?.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+function closePatent(){ patentModal?.classList.remove('open'); patentModal?.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+patentMore?.addEventListener('click', openPatent);
+pmClose?.addEventListener('click', closePatent);
+patentModal?.addEventListener('click', e=>{ if(e.target === patentModal) closePatent(); });
+document.addEventListener('keydown', e=>{ if(e.key==='Escape' && patentModal?.classList.contains('open')) closePatent(); });
+
+/* ---------- INLINE "SEE MORE" TOGGLES (mobile) ---------- */
+function wireSeeMore(btnId, targetSel, moreLabel = 'See more ', lessLabel = 'See less '){
+  const btn = document.getElementById(btnId);
+  const target = document.querySelector(targetSel);
+  if(!btn || !target) return;
+  btn.addEventListener('click', ()=>{
+    const ex = target.classList.toggle('expanded');
+    btn.setAttribute('aria-expanded', ex ? 'true' : 'false');
+    btn.childNodes[0].nodeValue = ex ? lessLabel : moreLabel;
+  });
+}
+wireSeeMore('aboutSeeMore', '#about .about-grid');
+wireSeeMore('achSeeMore',   '#achievement .ach-card');
+wireSeeMore('projSeeMore',  '#projects .project-featured', 'See more about this project ', 'Show less ');
 
 /* ---------- NAV ---------- */
 const nav       = document.getElementById('nav');

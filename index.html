@@ -39,19 +39,42 @@
     <video class="hero-bg-blur" autoplay muted loop playsinline preload="auto" aria-hidden="true">
       <source src="video.mp4" type="video/mp4" />
     </video>
-    <video id="heroBgVideo" class="hero-bg-video" autoplay muted playsinline preload="auto">
+    <video id="heroBgVideo" class="hero-bg-video" playsinline preload="auto">
       <source src="video.mp4" type="video/mp4" />
     </video>
     <div class="hero-bg-overlay"></div>
   </div>
+
+  <!-- Play button (click = video starts WITH sound) + animated guiding arrow -->
+  <div id="playHint" class="play-hint">
+    <span class="play-hint-text">Click to play with sound 🔊</span>
+    <svg class="play-arrow-svg" viewBox="0 0 56 72" width="52" height="66" aria-hidden="true">
+      <defs>
+        <linearGradient id="arrowGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#7c5cff"/>
+          <stop offset="0.5" stop-color="#22d3ee"/>
+          <stop offset="1" stop-color="#ff5c8a"/>
+        </linearGradient>
+      </defs>
+      <path class="ap-curve" d="M30 6 C 8 24, 50 40, 28 58" stroke="url(#arrowGrad)" />
+      <path class="ap-head" d="M18 48 L28 60 L38 47" stroke="url(#arrowGrad)" />
+    </svg>
+  </div>
+  <button id="playBtn" class="play-overlay" aria-label="Play intro video with sound">
+    <span class="play-rings"></span>
+    <span class="play-circle">
+      <svg viewBox="0 0 24 24" width="40" height="40" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+    </span>
+  </button>
   <div class="hero-content hero-enter">
     <p class="hero-kicker">Hello, I'm</p>
     <h1 class="hero-title">Sayantan Dhara</h1>
     <h2 class="hero-sub">I build <span id="typed" class="accent"></span></h2>
     <p class="hero-desc">
-      Custom Software Engineer &amp; MCA finalist. Co-inventor of a
+      <span class="hd-full">Custom Software Engineer &amp; MCA finalist. Co-inventor of a
       <strong>UK Registered Design Patent (No. 6505034)</strong> for a Hybrid
-      Quantum-Classical Computer Device. I craft scalable web apps, REST APIs &amp; automation pipelines.
+      Quantum-Classical Computer Device. I craft scalable web apps, REST APIs &amp; automation pipelines.</span>
+      <span class="hd-short">Full-Stack Developer &amp; <strong>UK Design Patent</strong> co-inventor — building scalable web apps, AI agents &amp; automation.</span>
     </p>
     <div class="hero-actions">
       <a href="#projects" class="btn btn-primary">View My Work</a>
@@ -103,6 +126,7 @@
       <div class="mini-card"><h3>ML / CV</h3><p>OpenCV face recognition &amp; attendance systems.</p></div>
     </div>
   </div>
+  <button class="see-more" id="aboutSeeMore" aria-expanded="false">See more <span>▼</span></button>
 </section>
 
 <!-- ============ SKILLS ============ -->
@@ -115,28 +139,46 @@
     <div class="skill-col reveal">
       <h3>Languages</h3>
       <div class="bars" data-bars>
-        <div class="bar"><span>Java</span><i style="--v:88%"></i></div>
-        <div class="bar"><span>Python</span><i style="--v:90%"></i></div>
-        <div class="bar"><span>JavaScript</span><i style="--v:85%"></i></div>
-        <div class="bar"><span>SQL</span><i style="--v:80%"></i></div>
+        <div class="bar"><span>☕ Java</span><i style="--v:88%"></i></div>
+        <div class="bar"><span>🐍 Python</span><i style="--v:90%"></i></div>
+        <div class="bar"><span>🟨 JavaScript</span><i style="--v:85%"></i></div>
+        <div class="bar"><span>🗄️ SQL</span><i style="--v:80%"></i></div>
       </div>
     </div>
     <div class="skill-col reveal">
       <h3>Web &amp; Backend</h3>
       <div class="bars" data-bars>
-        <div class="bar"><span>React.js</span><i style="--v:85%"></i></div>
-        <div class="bar"><span>Node / Express</span><i style="--v:82%"></i></div>
-        <div class="bar"><span>Flask (Jinja2)</span><i style="--v:80%"></i></div>
-        <div class="bar"><span>REST APIs</span><i style="--v:86%"></i></div>
+        <div class="bar"><span>⚛️ React.js</span><i style="--v:85%"></i></div>
+        <div class="bar"><span>🟢 Node / Express</span><i style="--v:82%"></i></div>
+        <div class="bar"><span>🧪 Flask (Jinja2)</span><i style="--v:80%"></i></div>
+        <div class="bar"><span>🔗 REST APIs</span><i style="--v:86%"></i></div>
       </div>
     </div>
     <div class="skill-col reveal">
       <h3>Quantum &amp; Data</h3>
       <div class="bars" data-bars>
-        <div class="bar"><span>Qiskit · QKD · PQC</span><i style="--v:78%"></i></div>
-        <div class="bar"><span>MySQL · MongoDB</span><i style="--v:82%"></i></div>
-        <div class="bar"><span>OpenCV / ML</span><i style="--v:76%"></i></div>
-        <div class="bar"><span>Automation</span><i style="--v:84%"></i></div>
+        <div class="bar"><span>⚛️ Qiskit · QKD · PQC</span><i style="--v:78%"></i></div>
+        <div class="bar"><span>🗄️ MySQL · MongoDB</span><i style="--v:82%"></i></div>
+        <div class="bar"><span>👁️ OpenCV / ML</span><i style="--v:76%"></i></div>
+        <div class="bar"><span>⚙️ Automation</span><i style="--v:84%"></i></div>
+      </div>
+    </div>
+    <div class="skill-col reveal">
+      <h3>AI &amp; Agents</h3>
+      <div class="bars" data-bars>
+        <div class="bar"><span>🤖 AI Agents</span><i style="--v:88%"></i></div>
+        <div class="bar"><span>🧠 LLM Integration</span><i style="--v:85%"></i></div>
+        <div class="bar"><span>✨ Gemini · GPT · Claude</span><i style="--v:86%"></i></div>
+        <div class="bar"><span>💬 Prompt Engineering</span><i style="--v:84%"></i></div>
+      </div>
+    </div>
+    <div class="skill-col reveal">
+      <h3>DevOps &amp; Deployment</h3>
+      <div class="bars" data-bars>
+        <div class="bar"><span>🚀 VPS Deployment</span><i style="--v:85%"></i></div>
+        <div class="bar"><span>🐳 Docker</span><i style="--v:80%"></i></div>
+        <div class="bar"><span>🌐 Domain &amp; Subdomain</span><i style="--v:84%"></i></div>
+        <div class="bar"><span>🧰 Nginx · Ubuntu</span><i style="--v:82%"></i></div>
       </div>
     </div>
   </div>
@@ -160,6 +202,10 @@
 
 <!-- ============ PATENT HIGHLIGHT ============ -->
 <section class="section patent" id="patent">
+  <div class="section-head reveal patent-head">
+    <span class="tag">03 — Intellectual Property</span>
+    <h2>UK Registered <span class="accent">Design Patent</span></h2>
+  </div>
   <div class="patent-card reveal">
     <div class="patent-badge">UK · IPO</div>
     <div class="patent-grid">
@@ -176,9 +222,10 @@
       </div>
       <figure class="patent-doc">
         <img src="uk%20design.jpg" alt="UK Registered Design Patent No. 6505034 — official document" data-zoom loading="lazy" />
-        <figcaption>📄 Official patent document · click to enlarge</figcaption>
+        <figcaption>📄 Official patent document · tap to enlarge</figcaption>
       </figure>
     </div>
+    <button class="patent-more" id="patentMore">📜 See more details</button>
   </div>
 </section>
 
@@ -233,6 +280,7 @@
       <img src="5.jpg" alt="Catalyst 2K26 hackathon moment" data-zoom loading="lazy" />
     </div>
   </div>
+  <button class="see-more" id="achSeeMore" aria-expanded="false">See more <span>▼</span></button>
 </section>
 
 <!-- ============ PROJECTS ============ -->
@@ -251,6 +299,7 @@
         <span class="ach-pill ghost">Flint De Orient</span>
       </div>
       <h3>Flint Box <span class="pf-sub">— All-in-One CRM &amp; Multi-Channel Automation Platform</span></h3>
+      <p class="pf-short">🚀 The all-in-one CRM that automates <strong>WhatsApp, Instagram, Facebook &amp; Email</strong> — bulk messaging + smart Hot/Warm/Cold lead tracking, built &amp; deployed end-to-end by me.</p>
       <p class="pf-lead">
         A multi-talented <strong>CRM platform</strong> that manages customers and runs marketing
         automation across <strong>WhatsApp, Facebook, Instagram &amp; Email</strong> — from bulk
@@ -286,6 +335,7 @@
       </div>
     </div>
   </article>
+  <button class="see-more" id="projSeeMore" aria-expanded="false">See more about this project <span>▼</span></button>
 
   <div class="projects">
     <article class="project reveal">
@@ -425,20 +475,44 @@
   </div>
   <div class="contact-grid reveal">
     <a class="contact-card" href="mailto:sayantand652@gmail.com">
-      <span class="ci">✉️</span><h3>Email</h3><p>sayantand652@gmail.com</p></a>
+      <span class="ci"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.4-8 5-8-5V6l8 5 8-5v2.4z"/></svg></span><h3>Email</h3><p>sayantand652@gmail.com</p></a>
     <a class="contact-card" href="tel:+917449366526">
-      <span class="ci">📞</span><h3>Phone</h3><p>+91 74493 66526</p></a>
+      <span class="ci"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.53 15.53 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.03-.24 11.4 11.4 0 0 0 3.56.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.44.57 3.56a1 1 0 0 1-.24 1.03l-2.21 2.2z"/></svg></span><h3>Phone</h3><p>+91 74493 66526</p></a>
     <a class="contact-card" href="https://www.linkedin.com/in/sayantan-dhara-430bb5312" target="_blank" rel="noopener">
-      <span class="ci">in</span><h3>LinkedIn</h3><p>sayantan-dhara</p></a>
+      <span class="ci"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></span><h3>LinkedIn</h3><p>sayantan-dhara</p></a>
     <a class="contact-card" href="https://github.com/Sayantanraj" target="_blank" rel="noopener">
-      <span class="ci">⌨</span><h3>GitHub</h3><p>@Sayantanraj</p></a>
+      <span class="ci"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-1.96c-3.2.7-3.88-1.54-3.88-1.54-.53-1.34-1.3-1.7-1.3-1.7-1.05-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.79 2.73 1.27 3.4.97.1-.76.4-1.27.74-1.56-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.4-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg></span><h3>GitHub</h3><p>@Sayantanraj</p></a>
   </div>
 </section>
 
 <footer class="footer">
   <p>© 2026 Sayantan Dhara · Kolkata, India</p>
-  <p class="footer-note">Built with HTML · CSS · JavaScript — designed &amp; animated from scratch.</p>
 </footer>
+
+<!-- ============ PATENT DETAILS POPUP ============ -->
+<div class="patent-modal" id="patentModal" aria-hidden="true">
+  <div class="pm-card">
+    <button class="pm-close" id="pmClose" aria-label="Close">✕</button>
+    <div class="pm-top">
+      <span class="pm-seal">🏅</span>
+      <div>
+        <span class="pm-badge">UK · IPO</span>
+        <span class="pm-kicker">Intellectual Property</span>
+      </div>
+    </div>
+    <h3>UK Registered Design Patent <span class="accent">No. 6505034</span></h3>
+    <p class="pm-lead">Hybrid Quantum-Classical Computer Device — for Authentication &amp; Protective Housing.</p>
+    <figure class="pm-figure">
+      <img class="pm-img" src="uk%20design.jpg" alt="UK Registered Design Patent No. 6505034 — official document" />
+    </figure>
+    <div class="pm-meta">
+      <div class="pm-meta-item"><span class="pm-ico">🏛️</span><div><label>Issued By</label><p>UK Intellectual Property Office (IPO)</p></div></div>
+      <div class="pm-meta-item"><span class="pm-ico">🏷️</span><div><label>Class</label><p>14 — Recording, Telecom &amp; Data Processing (v15-2025)</p></div></div>
+      <div class="pm-meta-item"><span class="pm-ico">📅</span><div><label>Registered</label><p>Feb 2026</p></div></div>
+    </div>
+    <p class="pm-foot">Derived from my hybrid QKD-PQC cryptographic research — built for the quantum era.</p>
+  </div>
+</div>
 
 <!-- ============ LIGHTBOX ============ -->
 <div class="lightbox" id="lightbox" aria-hidden="true">
