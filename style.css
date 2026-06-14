@@ -35,6 +35,46 @@ a{color:inherit;text-decoration:none}
 }
 ::selection{background:var(--accent);color:#fff}
 
+/* ============ PRELOADER ============ */
+.preloader{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;overflow:hidden;
+  background:radial-gradient(circle at 50% 40%,#15122e,#05050d 75%);
+  transition:opacity .7s ease,transform .8s cubic-bezier(.7,0,.3,1),visibility .8s}
+.preloader.loaded{opacity:0;visibility:hidden;transform:scale(1.08)}
+/* moving grid backdrop */
+.pl-grid{position:absolute;inset:-50%;background-image:
+  linear-gradient(rgba(124,92,255,.12) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(124,92,255,.12) 1px,transparent 1px);
+  background-size:42px 42px;transform:perspective(400px) rotateX(60deg);
+  animation:plGrid 6s linear infinite;mask-image:radial-gradient(circle at 50% 40%,#000,transparent 60%)}
+@keyframes plGrid{to{background-position:0 42px}}
+.pl-inner{position:relative;display:grid;justify-items:center;gap:30px;z-index:2}
+
+/* SD logo with spinning gradient ring */
+.pl-logo{position:relative;width:130px;height:130px;display:grid;place-items:center}
+.pl-ring{position:absolute;inset:0;border-radius:50%;padding:3px;
+  background:conic-gradient(from 0deg,#7c5cff,#22d3ee,#ff5c8a,#7c5cff);
+  -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 0);
+          mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 0);
+  animation:plSpin 1.1s linear infinite;filter:drop-shadow(0 0 14px rgba(124,92,255,.6))}
+@keyframes plSpin{to{transform:rotate(360deg)}}
+.pl-core{font-family:'Sora',sans-serif;font-weight:800;font-size:46px;letter-spacing:-2px;
+  background:linear-gradient(120deg,#fff,#c7bbff,#22d3ee);background-size:200% auto;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  animation:shine 3s linear infinite,plPulse 2s ease-in-out infinite}
+.pl-core b{color:#22d3ee;-webkit-text-fill-color:#22d3ee}
+@keyframes plPulse{50%{transform:scale(1.08)}}
+
+/* progress bar */
+.pl-bar{width:min(260px,70vw);height:5px;border-radius:50px;background:rgba(255,255,255,.08);overflow:hidden}
+.pl-bar i{display:block;height:100%;width:0;border-radius:50px;
+  background:linear-gradient(90deg,#7c5cff,#22d3ee,#ff5c8a);background-size:200% auto;
+  box-shadow:0 0 16px rgba(34,211,238,.7);transition:width .25s ease;animation:gradFlow 3s linear infinite}
+.pl-meta{display:flex;align-items:center;gap:14px;font-family:'JetBrains Mono',monospace;font-size:13px;
+  color:var(--muted);letter-spacing:1px}
+.pl-pct{color:var(--accent2);font-weight:600;min-width:42px;text-align:right}
+.pl-dots::after{content:"";animation:plDots 1.4s steps(4,end) infinite}
+@keyframes plDots{0%{content:""}25%{content:"."}50%{content:".."}75%{content:"..."}100%{content:""}}
+
 /* ============ BG CANVAS + GLOWS ============ */
 #bgCanvas{position:fixed;inset:0;z-index:-2;opacity:.6}
 body::before{

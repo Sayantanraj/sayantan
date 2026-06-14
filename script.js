@@ -2,6 +2,61 @@
    Sayantan Dhara — Portfolio interactions
    ========================================================= */
 
+/* ---------- PRELOADER (buffers the hero video, then reveals) ---------- */
+(function(){
+  const pre  = document.getElementById('preloader');
+  const bar  = document.getElementById('plBar');
+  const pct  = document.getElementById('plPct');
+  if(!pre) return;
+  document.documentElement.style.overflow = 'hidden';   // lock scroll while loading
+
+  const video = document.getElementById('heroBgVideo');
+  let pageLoaded = false, videoReady = false, done = false, prog = 0;
+
+  // start buffering the video immediately
+  if(video){
+    try{ video.load(); }catch(e){}
+    if(video.readyState >= 4) videoReady = true;          // HAVE_ENOUGH_DATA
+    video.addEventListener('canplaythrough', ()=>{ videoReady = true; }, {once:true});
+    // some browsers settle on canplay — accept that too after buffering
+    video.addEventListener('canplay', ()=>{ if(video.readyState >= 3) videoReady = true; }, {once:true});
+  } else { videoReady = true; }
+  window.addEventListener('load', ()=>{ pageLoaded = true; });
+
+  function bufferedPct(){
+    try{
+      if(video && video.duration && video.buffered.length){
+        return (video.buffered.end(video.buffered.length - 1) / video.duration) * 100;
+      }
+    }catch(e){}
+    return 0;
+  }
+  function paint(p){ p = Math.min(100, Math.round(p)); if(bar) bar.style.width = p + '%'; if(pct) pct.textContent = p + '%'; }
+
+  const tick = setInterval(()=>{
+    if(done) return;
+    prog += Math.max(0.4, (70 - prog) * 0.04);            // baseline crawl to 70%
+    if(prog > 70) prog = 70;
+    paint(Math.max(prog, bufferedPct()));                  // show REAL video buffering
+  }, 100);
+
+  function finish(){
+    if(done) return; done = true;
+    clearInterval(tick);
+    paint(100);
+    setTimeout(()=>{ pre.classList.add('loaded'); document.documentElement.style.overflow = ''; }, 450);
+    setTimeout(()=>{ pre.remove(); }, 1350);
+  }
+
+  // reveal only when the page AND the video are ready (so play is instant) — min 1s
+  setTimeout(function waitReady(){
+    if(done) return;
+    if(pageLoaded && videoReady) finish();
+    else setTimeout(waitReady, 150);
+  }, 1000);
+  setTimeout(finish, 12000);                               // hard safety cap (slow connections)
+})();
+
 /* ---------- HERO VIDEO: PLAY BUTTON → PLAYS WITH SOUND ---------- */
 const bgVideo  = document.getElementById('heroBgVideo');
 const playBtn  = document.getElementById('playBtn');

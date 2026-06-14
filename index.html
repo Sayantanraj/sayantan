@@ -14,6 +14,22 @@
 </head>
 <body>
 
+<!-- ============ PRELOADER ============ -->
+<div id="preloader" class="preloader">
+  <div class="pl-grid"></div>
+  <div class="pl-inner">
+    <div class="pl-logo">
+      <span class="pl-ring"></span>
+      <span class="pl-core">SD<b>.</b></span>
+    </div>
+    <div class="pl-bar"><i id="plBar"></i></div>
+    <div class="pl-meta">
+      <span class="pl-text">Loading portfolio<span class="pl-dots"></span></span>
+      <span class="pl-pct" id="plPct">0%</span>
+    </div>
+  </div>
+</div>
+
 <!-- ============ CUSTOM CURSOR + PROGRESS + BG ============ -->
 <canvas id="bgCanvas"></canvas>
 <div class="cursor-glow" id="cursorGlow"></div>
@@ -38,7 +54,7 @@
 <!-- ============ HERO ============ -->
 <section class="hero" id="home">
   <div class="hero-media">
-    <video id="heroBgVideo" class="hero-bg-video" playsinline preload="metadata">
+    <video id="heroBgVideo" class="hero-bg-video" playsinline preload="auto">
       <source src="video.mp4" type="video/mp4" />
     </video>
     <div class="hero-bg-overlay"></div>
