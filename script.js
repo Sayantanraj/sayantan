@@ -205,6 +205,16 @@ function openLb(i){
 function closeLb(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); }
 
 zoomImgs.forEach((img,i)=> img.addEventListener('click', ()=>openLb(i)) );
+
+// patent popup image → bring the picture to front (full-screen) on click
+const pmImg = document.querySelector('#patentModal .pm-img');
+pmImg?.addEventListener('click', ()=>{
+  lbImg.src = pmImg.src;
+  lbImg.alt = pmImg.alt;
+  lb.classList.add('open');
+  lb.setAttribute('aria-hidden','false');
+});
+
 lbClose?.addEventListener('click', closeLb);
 lbPrev?.addEventListener('click', e=>{ e.stopPropagation(); openLb(lbIndex-1); });
 lbNext?.addEventListener('click', e=>{ e.stopPropagation(); openLb(lbIndex+1); });
