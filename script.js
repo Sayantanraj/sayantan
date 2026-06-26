@@ -156,6 +156,48 @@ wireSeeMore('aboutSeeMore', '#about .about-grid');
 wireSeeMore('achSeeMore',   '#achievement .ach-card');
 wireSeeMore('projSeeMore',  '#projects .project-featured', 'See more about this project ', 'Show less ');
 
+/* ---------- CONTACT FORM ---------- */
+const contactForm = document.getElementById('contactForm');
+const cfStatus = document.getElementById('cfStatus');
+const cfSubmit = document.getElementById('cfSubmit');
+contactForm?.addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const data = Object.fromEntries(new FormData(contactForm).entries());
+  // basic validation
+  if(!data.name || !data.email || !data.message){
+    cfStatus.className = 'cf-status err';
+    cfStatus.textContent = '✕ Please fill in your name, email and message.';
+    return;
+  }
+  cfSubmit.disabled = true;
+  cfSubmit.textContent = 'Sending…';
+  cfStatus.className = 'cf-status';
+  cfStatus.textContent = '';
+  try{
+    const res = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    const json = await res.json().catch(()=>({}));
+    if(res.ok && json.ok){
+      cfStatus.className = 'cf-status ok';
+      cfStatus.textContent = '✓ Message sent! A confirmation email is on its way to you.';
+      contactForm.reset();
+    } else if(res.status === 404 || res.status === 405){
+      throw new Error('The contact form only works on the live deployed site (Vercel), not when opened locally.');
+    } else {
+      throw new Error(json.error || 'Something went wrong. Please try again.');
+    }
+  }catch(err){
+    cfStatus.className = 'cf-status err';
+    cfStatus.textContent = '✕ ' + (err.message || 'Could not send. Please try again later.');
+  }finally{
+    cfSubmit.disabled = false;
+    cfSubmit.textContent = 'Send Message';
+  }
+});
+
 /* ---------- NAV ---------- */
 const nav       = document.getElementById('nav');
 const navToggle = document.getElementById('navToggle');

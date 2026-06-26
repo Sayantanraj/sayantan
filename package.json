@@ -1,0 +1,9 @@
+{
+  "name": "sayantan-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sayantan Dhara — portfolio website with contact form",
+  "dependencies": {
+    "nodemailer": "^6.9.14"
+  }
+}

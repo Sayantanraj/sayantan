@@ -558,6 +558,27 @@ body::before{
 .cred-imgs img:hover{transform:scale(1.04);border-color:var(--accent2);
   box-shadow:0 16px 38px rgba(0,0,0,.5),0 0 30px rgba(34,211,238,.25)}
 
+/* contact form */
+.contact-form{max-width:760px;margin:0 auto 18px;display:grid;gap:16px}
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.contact-form input,.contact-form textarea{width:100%;padding:16px 18px;border-radius:16px;
+  background:var(--panel);border:1px solid var(--line);color:var(--txt);font-family:inherit;font-size:15px;
+  transition:border-color .25s,box-shadow .25s,background .25s;resize:vertical}
+.contact-form input::placeholder,.contact-form textarea::placeholder{color:var(--muted)}
+.contact-form input:focus,.contact-form textarea:focus{outline:none;border-color:var(--accent);
+  background:rgba(124,92,255,.06);box-shadow:0 0 0 3px rgba(124,92,255,.18)}
+.cf-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}  /* spam honeypot */
+.cf-submit{padding:16px 24px;border:none;border-radius:50px;cursor:pointer;font-weight:700;font-size:16px;
+  color:#fff;background:var(--grad);background-size:200% auto;box-shadow:0 14px 34px rgba(124,92,255,.4);
+  transition:transform .25s,box-shadow .25s,background-position .5s;animation:gradFlow 5s ease infinite}
+.cf-submit:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 18px 44px rgba(124,92,255,.55)}
+.cf-submit:disabled{opacity:.7;cursor:not-allowed}
+.cf-status{text-align:center;font-size:14.5px;min-height:1.2em;margin-top:2px;font-weight:600}
+.cf-status.ok{color:#3ddc84}
+.cf-status.err{color:#ff6b8a}
+.cf-or{text-align:center;color:var(--muted);font-size:13px;letter-spacing:1px;margin:14px 0 24px;
+  font-family:'JetBrains Mono',monospace}
+
 /* contact */
 .contact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
 .contact-card{padding:30px 22px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
@@ -783,6 +804,8 @@ body::after{content:"";position:fixed;width:46vmax;height:46vmax;border-radius:5
   .about-cards{grid-template-columns:1fr}
   .ach-gallery{grid-template-columns:1fr 1fr}
 
+  .cf-row{grid-template-columns:1fr}
+  .contact-form input,.contact-form textarea{padding:14px 16px;font-size:14.5px}
   /* Contact → 2-column compact cards (not one-per-row) */
   .contact-grid{grid-template-columns:1fr 1fr;gap:12px}
   .contact-card{padding:20px 12px}

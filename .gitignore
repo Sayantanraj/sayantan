@@ -1,0 +1,9 @@
+# dependencies
+node_modules/
+
+# secrets — never commit these
+.env
+.env.local
+
+# vercel
+.vercel
