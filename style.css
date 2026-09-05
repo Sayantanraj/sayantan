@@ -529,6 +529,8 @@ body::before{
 .timeline.lit .tl-item:nth-child(3) .tl-dot{animation-delay:1.15s}
 .timeline.lit .tl-item:nth-child(4) .tl-dot{animation-delay:1.6s}
 .timeline.lit .tl-item:nth-child(5) .tl-dot{animation-delay:1.95s}
+.timeline.lit .tl-item:nth-child(6) .tl-dot{animation-delay:2.25s}
+.timeline.lit .tl-item:nth-child(7) .tl-dot{animation-delay:2.5s}
 @keyframes dotPop{
   0%{transform:scale(0);opacity:0;box-shadow:0 0 0 4px var(--bg),0 0 0 transparent}
   60%{transform:scale(1.55);box-shadow:0 0 0 4px var(--bg),0 0 26px 6px var(--accent2)}
